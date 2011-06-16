@@ -5,6 +5,8 @@ I've heard of too many people blaming that Linux is ugly when compared to Window
 == Why LPF? ==
 Developers on Windows have WPF. It is amazing and you can do a lot of incredible effects. You can use XML (XAML is the correct term) to design UIs.
 This project is not a copy of WPF. It won't be developed in C#, as C# is not quite loved among the Linux developers. It uses C++ and in the future a port to Phyton is possible.
+The main target of LPF is to give to the Linux world a powerful tool to develop nice and clean UIs. 
+Another priority is to show the world that the power of Linux is unlimited and there is nothing that you can do on Windows that you can't do on Linux, and better.
 
 == Differences to WPF ==
 Due to some lacks of C++ in constrast to C# many classes have different functions and Properties (get & set) can't be implemented. If in WPF you wrote:
@@ -13,7 +15,6 @@ Due to some lacks of C++ in constrast to C# many classes have different function
 In C++ our only option is:
  int temp = this.Width();
  this.Width(100);
-
 In WPF your code is executed (unless you're using threads) in the GUI thread. Which means that you will slow down rendering if you do something slow. In LPF the GUI Rendering thread is executed apart.
 You can access property of the GUI thread without using ''Dispatcher''s. This may change in the future.
 
@@ -31,9 +32,9 @@ You can however draw some shapes (Rectangles, Circles, Ellipses) with a stroke o
 You can use the whole Colors and Brushes classes. You can use the SolidColorBrush, the '''LinearGradientBrush''' and the '''RadialGradientBrush'''. You can even use the Alpha Channel.
 The XAML parser is still far away. We need a consistend base first.
 
-== Is it stable ==
+== Is it stable? ==
 It is not even tested yet. Use it at your own risk. But please submit bugs.
 
-=== May I help you? I have been a WPF developers for some days... ==
+== May I help you? I have been a WPF developers for some days... ==
 Sure but keep in mind that this is not easy stuff. You should now at least some basics of Cairo and being an experienced C++ programmer. No Xlib experience is required.
 
