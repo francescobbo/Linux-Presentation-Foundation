@@ -1,0 +1,39 @@
+== Linux Presentation Foundation ==
+'''Linux Presentation Foundation''' is a class library which will make your Linux experience great.
+I've heard of too many people blaming that Linux is ugly when compared to Windows or Mac OS, from a graphical point of view and that Compiz is able to do many things but mostly not very useful.
+
+== Why LPF? ==
+Developers on Windows have WPF. It is amazing and you can do a lot of incredible effects. You can use XML (XAML is the correct term) to design UIs.
+This project is not a copy of WPF. It won't be developed in C#, as C# is not quite loved among the Linux developers. It uses C++ and in the future a port to Phyton is possible.
+
+== Differences to WPF ==
+Due to some lacks of C++ in constrast to C# many classes have different functions and Properties (get & set) can't be implemented. If in WPF you wrote:
+ int temp = this.Width;
+ this.Width = 100;
+In C++ our only option is:
+ int temp = this.Width();
+ this.Width(100);
+
+In WPF your code is executed (unless you're using threads) in the GUI thread. Which means that you will slow down rendering if you do something slow. In LPF the GUI Rendering thread is executed apart.
+You can access property of the GUI thread without using ''Dispatcher''s. This may change in the future.
+
+== How does it work? ==
+LPF is not based on Gtk, Qt, Wx or any other widgets library. There are only three low-level libraries used as dependency:
+'''Xlib''': a library used to communicate to the X Server. The X Server is responsible of managing the different Screens and Windows you might have.
+'''Cairo''': this powerful library is used during ''rendering''. Cairo is able to draw any kind of image you might imagine taking advantage of hardware acceleration.
+'''Cairomm''': this is just a wrapper for C++ around Cairo.
+
+A wrapper around this libraries to better integrate in the LPF code might be developed in the future.
+
+== Is it complete? ==
+No. We are at 0.1% of the total work. This project is still in the Planning phase.
+You can however draw some shapes (Rectangles, Circles, Ellipses) with a stroke of an arbitrary size, a Stroke and Fill.
+You can use the whole Colors and Brushes classes. You can use the SolidColorBrush, the '''LinearGradientBrush''' and the '''RadialGradientBrush'''. You can even use the Alpha Channel.
+The XAML parser is still far away. We need a consistend base first.
+
+== Is it stable ==
+It is not even tested yet. Use it at your own risk. But please submit bugs.
+
+=== May I help you? I have been a WPF developers for some days... ==
+Sure but keep in mind that this is not easy stuff. You should now at least some basics of Cairo and being an experienced C++ programmer. No Xlib experience is required.
+
