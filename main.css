@@ -1,0 +1,18 @@
+html, body
+{
+	margin: 0;
+	padding: 0;
+	font-family: "Lucida Grande", Verdana, Tahoma, Arial, sans-serif;
+	font-size: 1em;
+	background-color: #0099FF;
+}
+h1, h2, h3, h4, h5, h6
+{
+	margin: 0;
+	padding: 0;
+}
+#cnt
+{
+	width: 960px;
+	margin: 0 auto;
+}
