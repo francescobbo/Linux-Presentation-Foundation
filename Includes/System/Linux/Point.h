@@ -1,6 +1,8 @@
 #ifndef _LPF_SYSTEM_LINUX_POINT_H_
 #define _LPF_SYSTEM_LINUX_POINT_H_
 
+#include <System/IFormattable.h>
+
 namespace System
 {
 	namespace Linux

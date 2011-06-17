@@ -1,7 +1,8 @@
 #ifndef _LPF_SYSTEM_EXCEPTION_H_
 #define _LPF_SYSTEM_EXCEPTION_H_
 
-#include <System/Exception.h>
+#include <System/Object.h>
+#include <System/String.h>
 
 namespace System
 {

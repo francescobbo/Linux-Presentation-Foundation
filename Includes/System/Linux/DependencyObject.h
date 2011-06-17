@@ -12,7 +12,14 @@ namespace System
 		public:
 			DependencyObject();
 			
-			// TODO
+//			ClearValue(DependencyProperty);
+//			CoerceValue();
+//			GetValue();
+//			InvalidateProperty();
+//			OnPropertyChanged();
+//			ReadLocalValue();
+//			SetCurrentValue();
+//			SetValue(DependencyProperty, Object);
 		};
 	}
 }

@@ -8,11 +8,11 @@ INCLUDES := -I./Includes
 
 $(OUTPUT): $(OBJS)
 	@echo " [AR ]\t"$@
-	@ar -rv $@ $(OBJS) &>/dev/null
+	@ar -rv $@ $(OBJS) >/dev/null 2>&1
 	
 .cpp.o:
 	@echo " [G++]\t"$@
-	@g++ $(INCLUDES) `pkg-config --cflags cairomm-1.0` $? -o $@ -c
+	@g++ $(INCLUDES) `pkg-config --cflags cairomm-1.0` -O3 $? -o $@ -c
 
 clean:
 	rm $(OBJS)
