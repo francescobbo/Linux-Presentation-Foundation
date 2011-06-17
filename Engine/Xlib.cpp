@@ -24,11 +24,34 @@ Xlib::WinId Xlib::CreateWindow(uint Width, uint Height, uint Top, uint Left, uin
 	XCreateSimpleWindow(disp, childOf == 0 ? RootWindow(disp, 0) : childOf, Left, Top, Width, Height, 0, 0, BgColor);
 }
 
+void Xlib::DestroyWindow(WinId win)
+{
+	XDestroyWindow(disp, win);
+}
+
+void Xlib::MapWindow(WinId win, bool OnTop)
+{
+	if (OnTop)
+		XMapRaised(disp, win);
+	else
+		XMapWindow(disp, win);
+}
+
+void Xlib::UnmapWindow(WinId win)
+{
+	XUnmapWindow(disp, win);
+}
+
 void Xlib::SetWmProtocol(WinId Win, const char *AtomName, bool OnlyIfExists, uint value)
 {
 	Atom atom = XInternAtom(disp, AtomName, OnlyIfExists ? True : False);
 	if (atom == None)
 		throw System::Exception("Invalid X Atom!");
 	XSetWMProtocols(disp, Win, &atom, value);
+}
+
+void Xlib::Flush()
+{
+	XFlush(disp);
 }
 

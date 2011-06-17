@@ -13,7 +13,12 @@ public:
 	typedef Window WinId;
 	
 	WinId CreateWindow(uint Width, uint Height, uint Top, uint Left, uint BgColor, WinId childOf = 0);
-	void SetWmProtocol(WinId Win, const char *Atom, bool OnlyIfExists, uint value);
+	void DestroyWindow(WinId win);
+	void MapWindow(WinId win, bool OnTop = false);
+	void UnmapWindow(WinId win);
+
+	void SetWmProtocol(WinId win, const char *Atom, bool OnlyIfExists, uint value);
+	void Flush();
 	
 private:
 	Display *disp;	
