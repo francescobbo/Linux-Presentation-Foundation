@@ -3,17 +3,22 @@
 
 #include <Engine/Xlib.h>
 
+#include <iostream>
+using namespace std;
+	
 namespace System
 {
 	namespace Linux
 	{
-		Window::Window() : Controls::ContentControl(), PaintThreadStart((Action) Paint), PaintThread(PaintThreadStart)
+		Window::Window() : Controls::ContentControl(), PaintThreadStart((Action1) Paint), PaintThread(PaintThreadStart)
 		{
 			Width = Height = 350;
 			Top = Left = 20;
 		
 			win = xlib.CreateWindow(Width, Height, Top, Left, 0xFFFFFF);
-			xlib.SetWmProtocol(win, "WM_DELETE_WINDOW", true, 1);
+			xlib.SetWmProtocol(win, "WM_DELETE_WINDOW", 1);
+			
+			xlib.SetDecorations(win, false);
 		}
 		
 		Window::~Window()
@@ -24,7 +29,9 @@ namespace System
 		void Window::Close()
 		{
 			Hide();
-			xlib.DestroyWindow(win);
+			if (win)
+				xlib.DestroyWindow(win);
+			win = 0;
 		}
 		
 		void Window::Hide()
@@ -45,19 +52,24 @@ namespace System
 			xlib.Flush();
 			IsMapped = true;
 	
+			cout << "Rwin: " << this << endl;
 			PaintThread.Start(*this);
 	
-//			EventLoop();
+			xlib.EventPump(*this);
 		}
-		
+
 		void *Window::Paint(Window &win)
 		{
 			while (1)
 			{
-/*				if (!win.IsVisible())
+				if (!win.IsMapped)
+				{
+					cout << "Win: " << &win << endl;
+					cout << "Bye from Paint" << endl;
 					pthread_exit(NULL);
+				}
 	
-				Cairo::RefPtr<Cairo::ImageSurface> backBuffer = Cairo::ImageSurface::create(Cairo::FORMAT_ARGB32, window.GetWidth(), window.GetHeight());
+/*				Cairo::RefPtr<Cairo::ImageSurface> backBuffer = Cairo::ImageSurface::create(Cairo::FORMAT_ARGB32, window.GetWidth(), window.GetHeight());
 				Cairo::RefPtr<Cairo::Context> cr = Cairo::Context::create(backBuffer);
 
 				window.Background->SetupContext(cr, window.GetWidth(), window.GetHeight());
@@ -78,6 +90,17 @@ namespace System
 				xlibCtx->fill();
 */
 			}
+		}
+		
+		Xlib::WinId Window::GetXId() const
+		{
+			return win;
+		}
+		
+		void Window::SetPassiveSize(int Width, int Height)
+		{
+			this->Width = Width;
+			this->Height = Height;
 		}
 	}
 }

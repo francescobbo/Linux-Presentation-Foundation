@@ -1,4 +1,5 @@
 #include <Engine/Xlib.h>
+#include <pthread.h>
 
 #include <System/Linux.h>
 

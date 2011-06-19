@@ -13,6 +13,7 @@ namespace System
 	{
 		class Window : public Controls::ContentControl
 		{
+			friend class ::Xlib;
 		public:
 			Window();
 			virtual ~Window();
@@ -30,6 +31,9 @@ namespace System
 			Threading::ThreadStart PaintThreadStart;
 			Threading::Thread PaintThread;
 			static void *Paint(Window &win);
+			
+			Xlib::WinId GetXId() const;
+			void SetPassiveSize(int Width, int Height);
 		};
 	}
 }

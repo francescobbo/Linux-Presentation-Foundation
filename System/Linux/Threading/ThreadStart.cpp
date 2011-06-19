@@ -1,6 +1,9 @@
 #include <System.h>
 #include <System/Linux/Threading.h>
 
+#include <iostream>
+using namespace std;
+
 namespace System
 {
 	namespace Linux
@@ -9,12 +12,16 @@ namespace System
 		{
 			ThreadStart::ThreadStart(Action act)
 			{
+				cout << "P0" << endl;
+			
 				functionPtr = (void *) act;
 				ArgCount = 0;
 			}
 
 			ThreadStart::ThreadStart(Action1 act)
 			{
+				cout << "P1" << endl;
+
 				functionPtr = (void *) act;
 				ArgCount = 1;
 			}
