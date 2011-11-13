@@ -29,7 +29,7 @@ namespace System
 		strcpy(buff, s);
 	}
 
-	String::String(char c, size_t n)
+	String::String(char c, unsigned int n)
 	{
 		buff = 0;
 		if (n == 0)
@@ -101,8 +101,8 @@ namespace System
 		if (!buff)
 			return String(add);
 
-		size_t thisLen = Length();
-		size_t addLen = add.Length();
+		unsigned int thisLen = Length();
+		unsigned int addLen = add.Length();
 
 		unsigned int totLen = thisLen + addLen;
 		char *tmpBuff = new char[totLen + 1];
@@ -116,7 +116,7 @@ namespace System
 		return ret;
 	}
 
-	char String::operator[](size_t index) const
+	char String::operator[](unsigned int index) const
 	{
 		if (index >= Length())
 			throw ArgumentOutOfRangeException();
@@ -142,17 +142,17 @@ namespace System
 		if (!buff)
 			return false;
 
-		size_t thisLen = Length(), strLen = str.Length();
+		unsigned int thisLen = Length(), strLen = str.Length();
 		if (thisLen < strLen)
 			return false;
 
-		size_t begin = thisLen - strLen;
+		unsigned int begin = thisLen - strLen;
 		if (!strcmp(buff + begin, str.buff))
 			return true;
 		return false;
 	}
 
-	size_t String::Length() const
+	unsigned int String::Length() const
 	{
 		if (buff)
 			return strlen(buff);
@@ -187,13 +187,13 @@ namespace System
 			return -1;
 
 		/* ASDFG can't be contained in ASD. It's too long */
-		size_t thisLen = Length(), strLen = str.Length();
+		unsigned int thisLen = Length(), strLen = str.Length();
 		if (thisLen < strLen)
 			return -1;
 
 		/* It's waste of time to check for ASD in the last two characters... */
-		size_t maxTest = thisLen - strLen + 1;
-		for (size_t i = 0; i < maxTest; i++)
+		unsigned int maxTest = thisLen - strLen + 1;
+		for (unsigned int i = 0; i < maxTest; i++)
 		{
 			if (!strncmp(buff + i, str.buff, strLen))
 				return i;
@@ -358,9 +358,9 @@ namespace System
 
 	String String::ToLower() const
 	{
-		size_t l = Length();
+		unsigned int l = Length();
 		char *tmpBuff = new char[l + 1];
-		for (size_t i = 0; i < l; i++)
+		for (unsigned int i = 0; i < l; i++)
 		{
 			tmpBuff[i] = Char::ToLower(buff[i]);
 		}
@@ -373,9 +373,9 @@ namespace System
 
 	String String::ToUpper() const
 	{
-		size_t l = Length();
+		unsigned int l = Length();
 		char *tmpBuff = new char[l + 1];
-		for (size_t i = 0; i < l; i++)
+		for (unsigned int i = 0; i < l; i++)
 		{
 			tmpBuff[i] = Char::ToUpper(buff[i]);
 		}

@@ -11,14 +11,14 @@ namespace System
 		String();
 		String(const String &copy);
 		String(const char *str);
-		String(char c, size_t n);
+		String(char c, unsigned int n);
 		String(const String &orig, int startIndex, int length);
 		~String();
 
 		String &operator=(const String &copy);
 		String &operator+=(const String &app);
 
-		size_t Length() const;
+		unsigned int Length() const;
 
 		bool operator==(const String &op) const;
 		bool operator!=(const String &op) const;
@@ -27,7 +27,7 @@ namespace System
 		String operator+(const String &op) const;
 
 		operator const char *() const;
-		char operator[](size_t index) const;
+		char operator[](unsigned int index) const;
 
 		const static String Empty;
 

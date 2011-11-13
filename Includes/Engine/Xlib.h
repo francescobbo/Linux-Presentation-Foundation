@@ -27,6 +27,11 @@ public:
 	
 	void EventPump(System::Object &win);
 	
+	Display *GetDisplay()
+	{
+		return disp;
+	}
+	
 private:
 	Display *disp;
 	

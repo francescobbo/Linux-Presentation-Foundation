@@ -18,6 +18,7 @@ namespace System
 				GradientStop(Color color, double offset);
 	
 				GradientStop &operator=(const GradientStop &);
+                                bool operator==(const GradientStop &) const;
 
 				Media::Color color;
 				double Offset;
